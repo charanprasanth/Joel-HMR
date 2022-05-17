@@ -31,10 +31,10 @@ class _HistoryState extends State<History> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff0e9aa4),
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xff0e9aa4),
       body: StreamBuilder<QuerySnapshot>(
         stream: readItems(),
         builder: (context, snapshot) {
@@ -78,7 +78,7 @@ class _HistoryState extends State<History> {
                                       fontSize: 19,
                                       fontWeight: FontWeight.w700,
                                       letterSpacing: 1.2,
-                                      color: Colors.grey.shade800,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -91,7 +91,7 @@ class _HistoryState extends State<History> {
                                   child: IconButton(
                                     icon: Icon(
                                       Icons.logout_outlined,
-                                      color: Color(0xff0e9aa4),
+                                      color: Colors.white,
                                     ),
                                     onPressed: () {
                                       FirebaseAuth.instance.signOut();
@@ -131,6 +131,7 @@ class _HistoryState extends State<History> {
                                             fontSize: 17,
                                             fontWeight: FontWeight.w500,
                                             letterSpacing: 1.2,
+                                            color: Colors.white
                                           ),
                                         ),
                                       ),
@@ -143,7 +144,7 @@ class _HistoryState extends State<History> {
                                           "Total Items : " +
                                               orderInfo["numberOfItems"],
                                           style: TextStyle(
-                                            color: Color(0xff707070),
+                                            color: Colors.white,
                                             fontSize: 15.5,
                                           ),
                                         ),
@@ -182,7 +183,7 @@ class _HistoryState extends State<History> {
                                                   .second
                                                   .toString(),
                                           style: TextStyle(
-                                            color: Color(0xff848484),
+                                            color: Colors.white,
                                             fontSize: 14,
                                           ),
                                         ),
@@ -203,8 +204,9 @@ class _HistoryState extends State<History> {
                                         child: Text(
                                           "₹ " + orderInfo["orderPrice"],
                                           style: TextStyle(
-                                            color: Color(0xff50C878),
+                                            color: Colors.white,
                                             fontSize: 16.5,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
@@ -220,6 +222,7 @@ class _HistoryState extends State<History> {
                                             color: colorCode(
                                                 orderInfo["orderStatus"]),
                                             fontSize: 18,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
@@ -253,6 +256,7 @@ class _HistoryState extends State<History> {
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 1.2,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -265,7 +269,7 @@ class _HistoryState extends State<History> {
                                     "Total Items : " +
                                         orderInfo["numberOfItems"],
                                     style: TextStyle(
-                                      color: Color(0xff707070),
+                                      color: Colors.white,
                                       fontSize: 15.5,
                                     ),
                                   ),
@@ -295,7 +299,7 @@ class _HistoryState extends State<History> {
                                         ":" +
                                         timestamp.toDate().second.toString(),
                                     style: TextStyle(
-                                      color: Color(0xff848484),
+                                      color: Colors.white,
                                       fontSize: 14,
                                     ),
                                   ),
@@ -315,7 +319,7 @@ class _HistoryState extends State<History> {
                                   child: Text(
                                     "₹ " + orderInfo["orderPrice"],
                                     style: TextStyle(
-                                      color: Color(0xff50C878),
+                                      color: Colors.white,
                                       fontSize: 16.5,
                                     ),
                                   ),
@@ -331,6 +335,7 @@ class _HistoryState extends State<History> {
                                         color:
                                             colorCode(orderInfo["orderStatus"]),
                                         fontSize: 18,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     )),
                               ),
@@ -358,11 +363,11 @@ class _HistoryState extends State<History> {
 
   Color colorCode(status) {
     if (status == "Active") {
-      return Color(0xff50c878);
+      return Color(0xffd2fcde);
     } else if (status == "Delivered") {
-      return Color(0xff848484);
+      return Color(0xffb7b6b6);
     } else {
-      return Color(0xffEE4B2B);
+      return Color(0xffff8b75);
     }
   }
 

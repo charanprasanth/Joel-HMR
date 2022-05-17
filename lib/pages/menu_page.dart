@@ -53,12 +53,14 @@ class _MenuState extends State<Menu> {
     return Scaffold(
       appBar: AppBar(
         title:
-            Text("Today's Menu", style: TextStyle(color: Colors.grey.shade800)),
-        backgroundColor: Colors.white,
+            Text("Today's Menu", style: TextStyle(color: Colors.white)),
+        // backgroundColor: Colors.white,
+        backgroundColor: Color(0xff0e9aa4),
         elevation: 0,
         centerTitle: true,
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
+      backgroundColor: Color(0xff0e9aa4),
       body: menuList.length == 0
           ? Center(child: CircularProgressIndicator(color: Color(0xff0e9aa4)))
           : customizedCard(menuList),
@@ -84,112 +86,231 @@ class _MenuState extends State<Menu> {
     final double itemHeight = 100;
     final double itemWidth = 70;
 
+    // return Container(
+    //   margin: EdgeInsets.only(left: 15, right: 15, top: 10),
+    //   child: GridView.count(
+    //     crossAxisSpacing: 10,
+    //     mainAxisSpacing: 10,
+    //     shrinkWrap: true,
+    //     crossAxisCount: 2,
+    //     childAspectRatio: (itemWidth / itemHeight),
+    //     children: List.generate(menuList.length, (index) {
+    //       return InkWell(
+    //         onTap: () => showFloatingModalBottomSheet(
+    //           context: context,
+    //           builder: (context) => ModalFit(
+    //               itemName: menuList[index].itemName,
+    //               itemPrice: menuList[index].itemPrice,
+    //               itemCount: menuList[index].itemCount,
+    //               itemImage: menuList[index].itemImage,
+    //               itemCategory: menuList[index].itemCategory,
+    //               itemDescription: menuList[index].itemDescription,
+    //               itemType: menuList[index].itemType),
+    //         ),
+    //         child: Container(
+    //           decoration: BoxDecoration(
+    //             shape: BoxShape.rectangle,
+    //             borderRadius: BorderRadius.circular(10),
+    //             color: Color(0xfff2f2f2),
+    //           ),
+    //           child: Column(
+    //             children: <Widget>[
+    //               Padding(
+    //                 padding: const EdgeInsets.only(bottom: 10.0),
+    //                 child: ClipRRect(
+    //                   borderRadius: BorderRadius.only(
+    //                       topLeft: Radius.circular(10.0),
+    //                       topRight: Radius.circular(10.0)),
+    //                   child: Image.network(
+    //                     ImageLinks().imgLinks(menuList[index].itemName),
+    //                     fit: BoxFit.fill,
+    //                     height: 150.0,
+    //                     width: MediaQuery.of(context).size.width,
+    //                     loadingBuilder: (context, child, loadingProgress) {
+    //                       return loadingProgress == null
+    //                           ? child
+    //                           : CircularProgressIndicator(
+    //                               color:Color(0xff0e9aa4));
+    //                     },
+    //                   ),
+    //                 ),
+    //               ),
+    //               Row(
+    //                 mainAxisAlignment: MainAxisAlignment.start,
+    //                 children: [
+    //                   Container(
+    //                     margin: EdgeInsets.only(left: 10, top: 10.0),
+    //                     child: Image.asset(imagefun(menuList[index].itemType),
+    //                         width: 23, height: 23),
+    //                   ),
+    //                 ],
+    //               ),
+    //               Row(
+    //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                 children: [
+    //                   Container(
+    //                     margin: EdgeInsets.only(left: 10, top: 8),
+    //                     child: Text(
+    //                       menuList[index].itemName,
+    //                       style: TextStyle(fontSize: 17),
+    //                     ),
+    //                   ),
+    //                   Container(
+    //                     margin: EdgeInsets.only(right: 10),
+    //                     child: Text(
+    //                       "₹ " + menuList[index].itemPrice,
+    //                       style: TextStyle(
+    //                           fontSize: 17, color: Colors.green.shade600),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //               Row(
+    //                 children: [
+    //                   Container(
+    //                     margin: EdgeInsets.only(top: 7, left: 10),
+    //                     padding: EdgeInsets.only(
+    //                         left: 7, right: 7, top: 3, bottom: 3),
+    //                     decoration: BoxDecoration(
+    //                         color: Color(0xfff3f3f3),
+    //                         borderRadius: BorderRadius.circular(15),
+    //                         border: Border.all(color: Colors.grey, width: 1.0)),
+    //                     child: Text(
+    //                       menuList[index].itemCategory,
+    //                       style: TextStyle(
+    //                         fontSize: 12,
+    //                         color: Colors.grey,
+    //                         fontWeight: FontWeight.w400,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       );
+    //     }),
+    //   ),
+    // );
     return Container(
-      margin: EdgeInsets.only(left: 15, right: 15, top: 10),
-      child: GridView.count(
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        childAspectRatio: (itemWidth / itemHeight),
-        children: List.generate(menuList.length, (index) {
-          return InkWell(
-            onTap: () => showFloatingModalBottomSheet(
-              context: context,
-              builder: (context) => ModalFit(
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
+      child: ListView.builder(
+          itemCount: menuList.length,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () => showFloatingModalBottomSheet(
+                context: context,
+                builder: (context) => ModalFit(
                   itemName: menuList[index].itemName,
                   itemPrice: menuList[index].itemPrice,
                   itemCount: menuList[index].itemCount,
                   itemImage: menuList[index].itemImage,
                   itemCategory: menuList[index].itemCategory,
                   itemDescription: menuList[index].itemDescription,
-                  itemType: menuList[index].itemType),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xfff2f2f2),
+                  itemType: menuList[index].itemType,
+                ),
               ),
               child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0)),
-                      child: Image.network(
-                        ImageLinks().imgLinks(menuList[index].itemName),
-                        fit: BoxFit.fill,
-                        height: 150.0,
-                        width: MediaQuery.of(context).size.width,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          return loadingProgress == null
-                              ? child
-                              : CircularProgressIndicator(
-                                  color:Color(0xff0e9aa4));
-                        },
-                      ),
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xfff2f2f2),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10, top: 10.0),
-                        child: Image.asset(imagefun(menuList[index].itemType),
-                            width: 23, height: 23),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10, top: 8),
-                        child: Text(
-                          menuList[index].itemName,
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        child: Text(
-                          "₹ " + menuList[index].itemPrice,
-                          style: TextStyle(
-                              fontSize: 17, color: Colors.green.shade600),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 7, left: 10),
-                        padding: EdgeInsets.only(
-                            left: 7, right: 7, top: 3, bottom: 3),
-                        decoration: BoxDecoration(
-                            color: Color(0xfff3f3f3),
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.grey, width: 1.0)),
-                        child: Text(
-                          menuList[index].itemCategory,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w400,
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          // padding: const EdgeInsets.only(bottom: 10.0),
+                          padding: const EdgeInsets.all(10.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(10.0)),
+                            child: Image.network(
+                              ImageLinks().imgLinks(menuList[index].itemName),
+                              fit: BoxFit.cover,
+                              height: 200.0,
+                              width: MediaQuery.of(context).size.width,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                return loadingProgress == null
+                                    ? child
+                                    : CircularProgressIndicator(
+                                        color: Color(0xff0e9aa4));
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 10, top: 10.0),
+                              child: Image.asset(
+                                imagefun(menuList[index].itemType),
+                                width: 23,
+                                height: 23,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: 10,
+                                top: 8,
+                              ),
+                              child: Text(
+                                menuList[index].itemName,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: Text(
+                                "₹ " + menuList[index].itemPrice,
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.green.shade600),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 7, left: 10),
+                              padding: EdgeInsets.only(
+                                  left: 7, right: 7, top: 3, bottom: 3),
+                              decoration: BoxDecoration(
+                                  color: Color(0xfff3f3f3),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: Colors.grey, width: 1.0)),
+                              child: Text(
+                                menuList[index].itemCategory,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 15),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: 10),
                 ],
               ),
-            ),
-          );
-        }),
-      ),
+            );
+          }),
     );
   }
 }

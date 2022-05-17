@@ -16,6 +16,7 @@ class _WalletState extends State<Wallet> {
   List<WalletItem> walletList = [];
 
   String uid = FirebaseAuth.instance.currentUser!.uid.toString();
+
   //String uid = "wYUrvmfiJlWNsEBY0evxbf0pgpt2";
   String balance = "";
 
@@ -29,8 +30,10 @@ class _WalletState extends State<Wallet> {
     reference.child(uid).once().then((value) => {
           if (value.snapshot.exists)
             {
-              reference.child(uid).child("balance").once().then((snapshot) =>
-                  {balance = snapshot.snapshot.value.toString(), setState(() {})}),
+              reference.child(uid).child("balance").once().then((snapshot) => {
+                    balance = snapshot.snapshot.value.toString(),
+                    setState(() {})
+                  }),
               reference
                   .child(uid)
                   .child("Transactions")
@@ -63,8 +66,10 @@ class _WalletState extends State<Wallet> {
                 "walletStatus": "active"
               }).whenComplete(
                 () => reference.child(uid).child("balance").once().then(
-                    (snapshot) =>
-                        {balance = snapshot.snapshot.value.toString(), setState(() {})}),
+                    (snapshot) => {
+                          balance = snapshot.snapshot.value.toString(),
+                          setState(() {})
+                        }),
               )
             }
         });
@@ -75,17 +80,19 @@ class _WalletState extends State<Wallet> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff0e9aa4),
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xff0e9aa4),
       body: walletList.length == 0
           ? Column(
               children: [
                 BalanceContainer(balance: balance),
                 BalancePadding(),
                 Spacer(),
-                Center(child: Text("No Transactions yet"),),
+                Center(
+                  child: Text("No Transactions yet"),
+                ),
                 Spacer(),
               ],
             )
@@ -107,7 +114,7 @@ class _WalletState extends State<Wallet> {
                     ],
                   );
                 } else {
-                    return ListItem(
+                  return ListItem(
                       transId: walletList[index].transID,
                       transDate: walletList[index].dateStamp,
                       transAmount: walletList[index].transAmount,
@@ -139,7 +146,7 @@ class BalancePadding extends StatelessWidget {
           "Recharge History",
           style: TextStyle(
             fontSize: 20,
-            color: Colors.grey.shade800,
+            color: Colors.white,
             fontWeight: FontWeight.w500,
           ),
         ),

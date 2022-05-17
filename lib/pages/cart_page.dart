@@ -57,10 +57,10 @@ class _CartState extends State<Cart> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff0e9aa4),
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xff0e9aa4),
       body: cartList.isEmpty
           ? const Center(child: CircularProgressIndicator(color: Color(0xff0e9aa4)))
           : customizedCard(cartList),
@@ -111,9 +111,9 @@ class _CartState extends State<Cart> {
         label: Text(
           "Confirm Order of ₹" + sum.toString(),
           style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              color: Color(0xff0e9aa4), fontSize: 16, fontWeight: FontWeight.w500),
         ),
-        backgroundColor: Color(0xff0e9aa4),
+        backgroundColor: Colors.white,
       ),
     );
   }
@@ -138,7 +138,7 @@ class _CartState extends State<Cart> {
                           fontSize: 19,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.2,
-                          color: Colors.grey.shade800,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -146,7 +146,7 @@ class _CartState extends State<Cart> {
                   ListTile(
                     title: Text(cartList[index].itemName,
                         style:
-                            TextStyle(color: Color(0xff0e9aa4), fontSize: 20)),
+                            TextStyle(color: Colors.white, fontSize: 20)),
                     subtitle: Text("x" + cartList[index].itemCount + " nos"),
                     trailing: Container(
                       width: 120,
@@ -214,7 +214,7 @@ class _CartState extends State<Cart> {
           } else {
             return ListTile(
               title: Text(cartList[index].itemName,
-                  style: TextStyle(color: Color(0xff0e9aa4), fontSize: 20)),
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
               subtitle: Text("x" + cartList[index].itemCount + " nos"),
               trailing: Container(
                 width: 120,
@@ -226,7 +226,7 @@ class _CartState extends State<Cart> {
                     children: <Widget>[
                       Text(
                         "₹" + cartList[index].totalPrice,
-                        style: TextStyle(color: Colors.green, fontSize: 16.5),
+                        style: TextStyle(color: Colors.white, fontSize: 16.5),
                       ),
                       SizedBox(
                         width: 20,
@@ -237,7 +237,6 @@ class _CartState extends State<Cart> {
                             color: Colors.grey,
                           ),
                           onPressed: () {
-                            //commit
                             DatabaseReference reference = FirebaseDatabase
                                 .instance
                                 .reference()

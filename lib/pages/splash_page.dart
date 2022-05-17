@@ -24,13 +24,14 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
         child: Center(
           child: SizedBox(
             height: 300,
             width: 300,
-            child: Lottie.asset("assets/lottie_grey_food.json", repeat: false),
+            child: Image.asset("assets/logo.png"),
           ),
         ),
       ),
